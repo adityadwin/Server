@@ -23,16 +23,12 @@ app.get("/", (req, res) => {
   res.send("Server is running...");
 });
 
-app.use("https://server-1-01dn.onrender.com/api/users", userRoutes);
-app.use("https://server-1-01dn.onrender.com/api/posts", postRoutes);
-app.use("https://server-1-01dn.onrender.com/api/comments", commentRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/posts", postRoutes);
+app.use("/api/comments", commentRoutes);
 
 // static assets
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 app.use(invalidPathHandler);
 app.use(errorResponserHandler);
-
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
